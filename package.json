@@ -19,7 +19,9 @@
     "react-parallax-tilt": "^1.7.299",
     "react-router-dom": "^7.6.3",
     "react-simple-typewriter": "^5.0.1",
-    "react-toastify": "^11.0.5"
+    "react-toastify": "^11.0.5",
+    "react-tsparticles": "^2.12.2",
+    "tsparticles": "^3.8.1"
   },
   "devDependencies": {
     "@eslint/js": "^9.29.0",
