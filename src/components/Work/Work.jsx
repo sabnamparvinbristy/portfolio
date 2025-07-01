@@ -29,11 +29,15 @@ const Work = () => {
       className="py-24 px-[12vw] md:px-[7vw] lg:px-[20vw] font-sans relative bg-skills-gradient clip-path-custom"
     >
       <div className="text-center mb-16">
-        <h2 className="text-4xl md:text-5xl font-bold text-white tracking-wide">PROJECTS</h2>
-        <div className="w-24 h-1 bg-[#2EC4B6] mx-auto mt-3 rounded-full"></div>
+        <h2 className="text-4xl md:text-5xl font-bold text-white tracking-wide">
+          <span className="relative inline-block group">
+            <span className="relative z-10">PROJECTS</span>
+            <span className="absolute left-1/2 -bottom-1 transform -translate-x-1/2 h-[2px] w-0 bg-[#2EC4B6] transition-all duration-300 group-hover:w-full"></span>
+          </span>
+        </h2>
+
         <p className="text-gray-400 mt-6 text-lg font-medium max-w-xl mx-auto leading-relaxed">
-          
-          Explore a collection of my projects across different technologies 
+          Explore a collection of my projects across different technologies
           and stacks. Each one reflects creativity, problem-solving, and learning.
         </p>
       </div>
@@ -43,7 +47,9 @@ const Work = () => {
           <div
             key={project.id}
             onClick={() => handleOpenModal(project)}
-            className="bg-white/5 backdrop-blur-xl border border-white/10 rounded-3xl shadow-lg hover:shadow-[#2EC4B6]/40 transition-all duration-300 transform hover:scale-105 cursor-pointer focus:outline-none"
+            className="bg-white/5 backdrop-blur-xl border border-white/10 rounded-3xl 
+              shadow-none hover:shadow-[0_0_24px_3px_rgba(168,85,247,0.2)] hover:bg-[rgba(168,85,247,0.07)] 
+              transition-all duration-300 transform hover:scale-105 cursor-pointer focus:outline-none"
             tabIndex={0}
             onKeyDown={(e) => e.key === "Enter" && handleOpenModal(project)}
             role="button"
@@ -92,7 +98,7 @@ const Work = () => {
           >
             <button
               onClick={handleCloseModal}
-              className="absolute top-4 right-4 text-white text-3xl font-bold hover:text-[#2EC4B6] focus:outline-none"
+              className="absolute top-4 right-4 text-white text-3xl font-bold hover:text-[#a855f7] focus:outline-none"
               aria-label="Close modal"
             >
               &times;
@@ -108,7 +114,7 @@ const Work = () => {
               </div>
               <h3
                 id="modal-title"
-                className="text-3xl font-bold text-[#2EC4B6] mb-4 text-center"
+                className="text-3xl font-bold text-[#a855f7] mb-4 text-center"
               >
                 {selectedProject.title}
               </h3>
@@ -133,7 +139,7 @@ const Work = () => {
                   href={selectedProject.github}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="bg-white/10 hover:bg-[#2EC4B6] text-white hover:text-black px-6 py-3 rounded-full text-sm font-semibold transition-all duration-300 min-w-[120px] text-center"
+                  className="bg-white/10 hover:bg-[#a855f7] text-white hover:text-black px-6 py-3 rounded-full text-sm font-semibold transition-all duration-300 min-w-[120px] text-center"
                 >
                   View Code
                 </a>
@@ -142,7 +148,7 @@ const Work = () => {
                     href={selectedProject.webapp}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="bg-[#2EC4B6] hover:bg-[#1da79d] text-white px-6 py-3 rounded-full text-sm font-semibold transition-all duration-300 min-w-[120px] text-center"
+                    className="bg-[#a855f7] hover:bg-[#9244d4] text-white px-6 py-3 rounded-full text-sm font-semibold transition-all duration-300 min-w-[120px] text-center"
                   >
                     View Live
                   </a>

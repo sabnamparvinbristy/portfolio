@@ -7,11 +7,13 @@ const Navbar = () => {
   const [activeSection, setActiveSection] = useState("");
   const [isScrolled, setIsScrolled] = useState(false);
 
+  
   const menuItems = [
     { id: "about", label: "About" },
     { id: "skills", label: "Skills" },
     { id: "work", label: "Projects" },
     { id: "education", label: "Education" },
+    { id: "contact", label: "Contact" }, 
   ];
 
   useEffect(() => {
@@ -33,7 +35,7 @@ const Navbar = () => {
 
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
+  }, [menuItems]);
 
   const handleMenuItemClick = (sectionId) => {
     setActiveSection(sectionId);

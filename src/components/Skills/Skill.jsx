@@ -8,10 +8,14 @@ const Skill = () => {
       id="skills"
       className="py-24 px-[12vw] md:px-[7vw] lg:px-[20vw] font-sans bg-skills-gradient clip-path-custom"
     >
-      {/* Section Header */}
       <div className="text-center mb-16">
-        <h2 className="text-4xl md:text-5xl font-bold text-white tracking-wide">SKILLS</h2>
-        <div className="w-24 h-1 bg-[#2EC4B6] mx-auto mt-3 rounded-full"></div>
+        <h2 className="text-4xl md:text-5xl font-bold text-white tracking-wide">
+          <span className="relative inline-block group">
+            <span className="relative z-10">SKILLS</span>
+            <span className="absolute left-1/2 -bottom-1 transform -translate-x-1/2 h-[2px] w-0 bg-[#2EC4B6] transition-all duration-300 group-hover:w-full"></span>
+          </span>
+        </h2>
+
         <p className="text-gray-400 mt-6 text-lg font-medium max-w-xl mx-auto leading-relaxed">
           A professional toolkit of technologies applied across diverse development projects and team environments.
         </p>
@@ -22,10 +26,15 @@ const Skill = () => {
         {SkillsInfo.map((category) => (
           <div
             key={category.title}
-            className="bg-white/5 backdrop-blur-xl border border-white/10 rounded-3xl shadow-lg p-8 flex-1 min-w-[280px] max-w-[360px] transition-all duration-300 hover:shadow-[#2EC4B6]/30"
+  className="bg-white/5 backdrop-blur-xl border border-white/10 rounded-3xl shadow-none 
+    p-8 flex-1 min-w-[280px] max-w-[360px] transition-all duration-300 transform hover:scale-105
+    hover:shadow-[0_0_24px_3px_rgba(168,85,247,0.2)] hover:bg-[rgba(168,85,247,0.07)]"
           >
             <h3 className="text-2xl font-semibold text-white mb-6 text-center">
-              {category.title}
+              <span className="relative inline-block group">
+                <span className="relative z-10">{category.title}</span>
+                <span className="absolute left-1/2 -bottom-1 transform -translate-x-1/2 h-[2px] w-0 bg-[#2EC4B6] transition-all duration-300 group-hover:w-full"></span>
+              </span>
             </h3>
 
             <Tilt
