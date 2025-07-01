@@ -21,7 +21,7 @@ const About = () => {
 
           <h3 className="text-xl sm:text-2xl md:text-3xl font-semibold mb-6 text-[#2EC4B6] leading-tight">
             <span className="text-white">I am a </span>
-            <span>
+            <span >
               <Typewriter
                 words={[
                   "Aspiring Full-Stack Developer",
@@ -40,11 +40,12 @@ const About = () => {
             </span>
           </h3>
 
-          <p className="text-base sm:text-lg text-gray-400 leading-relaxed mb-8">
-            I’m a full-stack developer in the making, passionate about software
+          <p className="text-base sm:text-lg text-gray-400 leading-relaxed mb-8 font-[Dancing Script] font-bold"
+  style={{ fontFamily: "'Dancing Script', cursive" }}>
+            " I’m a full-stack developer in the making, passionate about software
             development and driven by curiosity. From Python to ML/AI, I enjoy
             solving problems and building things that matter. With each project,
-            I grow — and I’m always ready to learn, collaborate, and innovate.
+            I grow — and I’m always ready to learn, collaborate, and innovate. "
           </p>
 
           <a

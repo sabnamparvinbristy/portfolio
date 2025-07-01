@@ -30,11 +30,17 @@ const Work = () => {
     >
       <div className="text-center mb-16">
         <h2 className="text-4xl md:text-5xl font-bold text-white tracking-wide">
-          <span className="relative inline-block group">
-            <span className="relative z-10">PROJECTS</span>
-            <span className="absolute left-1/2 -bottom-1 transform -translate-x-1/2 h-[2px] w-0 bg-[#2EC4B6] transition-all duration-300 group-hover:w-full"></span>
-          </span>
-        </h2>
+  <span className="relative inline-block group">
+    <span
+      className="relative z-10 font-[Dancing Script]"
+      style={{ fontFamily: "'Dancing Script', cursive" }}
+    >
+      PROJECTS
+    </span>
+    <span className="absolute left-1/2 -bottom-1 transform -translate-x-1/2 h-[2px] w-0 bg-[#2EC4B6] transition-all duration-300 group-hover:w-full"></span>
+  </span>
+</h2>
+
 
         <p className="text-gray-400 mt-6 text-lg font-medium max-w-xl mx-auto leading-relaxed">
           Explore a collection of my projects across different technologies

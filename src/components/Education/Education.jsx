@@ -11,11 +11,17 @@ const Education = () => {
       {/* Section Title */}
       <div className="text-center mb-20">
         <h2 className="text-4xl md:text-5xl font-bold text-white tracking-wide">
-          <span className="relative inline-block group">
-            <span className="relative z-10">EDUCATION</span>
-            <span className="absolute left-1/2 -bottom-1 transform -translate-x-1/2 h-[2px] w-0 bg-[#2EC4B6] transition-all duration-300 group-hover:w-full"></span>
-          </span>
-        </h2>
+  <span className="relative inline-block group">
+    <span
+      className="relative z-10 font-[Dancing Script]"
+      style={{ fontFamily: "'Dancing Script', cursive" }}
+    >
+      EDUCATION
+    </span>
+    <span className="absolute left-1/2 -bottom-1 transform -translate-x-1/2 h-[2px] w-0 bg-[#2EC4B6] transition-all duration-300 group-hover:w-full"></span>
+  </span>
+</h2>
+
 
         <p className="text-gray-400 mt-6 text-lg font-medium max-w-2xl mx-auto leading-relaxed">
           My academic path has helped me grow and learn. Below is a look at my education.
