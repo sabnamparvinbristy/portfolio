@@ -23,7 +23,7 @@ import insomniaLogo from './assets/techlogo/insomnia.png';
 import figmaLogo from './assets/techlogo/figma.png';
 
 // Education Section Logos
-import varLogo from './assets/educationlogo/varsity.png';
+import varLogo from './assets/educationlogo/var.png';
 import clgLogo from './assets/educationlogo/clg.png';
 import schoolLogo from './assets/educationlogo/school.png';
 
