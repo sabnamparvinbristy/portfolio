@@ -10,7 +10,7 @@ const Navbar = () => {
   const menuItems = [
     { id: "about", label: "About" },
     { id: "skills", label: "Skills" },
-    { id: "work", label: "Work" },
+    { id: "work", label: "Projects" },
     { id: "education", label: "Education" },
   ];
 
