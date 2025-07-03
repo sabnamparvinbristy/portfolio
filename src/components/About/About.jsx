@@ -94,7 +94,7 @@ const About = () => {
 
       
     
-<div className="h-[40px]  bg-black clip-path-custom-5" />
+<div className="h-[40px]  bg-gradient-to-br from-[#0e0214] via-[#0f0c29] to-[#401f56]  clip-path-custom-5" />
 
 
 
