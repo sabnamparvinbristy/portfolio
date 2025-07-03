@@ -22,4 +22,6 @@ An elegant portfolio website featuring smooth animations, responsive design, and
 - 🎯  Easy to customize with Tailwind utility classes 
 - Sections: About, Skills, Projects, Contact, etc.
 
-  #Thank You
+
+
+Thank You
