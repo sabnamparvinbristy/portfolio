@@ -20,7 +20,7 @@ const Clock = () => {
   const toggleCover = () => setIsOpen(!isOpen);
 
   return (
-    <div
+    <div  
       style={{
         display: 'flex',
         justifyContent: 'center',

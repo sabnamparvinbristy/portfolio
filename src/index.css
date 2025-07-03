@@ -23,5 +23,12 @@ html{
     .clip-path-custom-3 {
         clip-path: polygon(0 0, 100% 0, 100% 98%, 75% 96%, 0 100%);
       }
+      .clip-path-custom-4 {
+  clip-path: polygon(0 100%, 100% 100%, 100% 5%, 85% 15%, 0 0);
+}
+.clip-path-custom-5 {
+  clip-path: polygon(0 0, 100% 0,0 90%,95% 0,0 100% );
+}
+
   }
   
