@@ -1,1 +1,91 @@
+/* Regular stars */
+.star {
+  position: absolute;
+  border-radius: 50%;
+  background-color: rgb(227, 229, 155);
+  animation: float linear infinite, sparkle 1.5s infinite;
+  filter: brightness(var(--brightness, 1)) drop-shadow(0 0 4px rgba(255, 255, 255, 0.7));
+  pointer-events: none;
+  will-change: transform, opacity;
+}
 
+/* Shooting stars */
+.shooting-star {
+  position: absolute;
+  height: 2px;
+  background: linear-gradient(
+    90deg,
+    rgba(173, 216, 255, 0.9) 0%,   /* Light blue start */
+    rgba(173, 216, 255, 0.4) 60%,  /* Fades */
+    rgba(173, 216, 255, 0) 100%
+  );
+  z-index: 2;
+  pointer-events: none;
+  transform: rotate(var(--angle, 315deg));
+  animation: shoot var(--duration, 3s) ease-out var(--delay, 0s) infinite;
+  filter: drop-shadow(0 0 6px rgba(173, 216, 255, 0.8));
+  border-radius: 2px;
+}
+
+/* Floating animation for stars */
+@keyframes float {
+  0% {
+    transform: translateY(0) translateX(0);
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+  100% {
+    transform: translateY(-100vh) translateX(20px);
+    opacity: 0;
+  }
+}
+
+/* Shooting star movement */
+@keyframes shoot {
+  0% {
+    transform: rotate(var(--angle)) translateX(0);
+    opacity: 0;
+  }
+  10% {
+    opacity: 1;
+  }
+  100% {
+    transform: rotate(var(--angle)) translateX(1600px);
+    opacity: 0;
+  }
+}
+
+/* Sparkle effect */
+@keyframes sparkle {
+  0%, 100% {
+    opacity: 0.7;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+/* Click ripple effect */
+.ripple {
+  position: absolute;
+  transform: translate(-50%, -50%);
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.3);
+  animation: rippleEffect 1s ease-out;
+  pointer-events: none;
+}
+
+@keyframes rippleEffect {
+  0% {
+    transform: translate(-50%, -50%) scale(1);
+    opacity: 1;
+  }
+  100% {
+    transform: translate(-50%, -50%) scale(10);
+    opacity: 0;
+  }
+}
