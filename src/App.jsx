@@ -44,7 +44,7 @@ function App() {
 
     // shooting stars
     const createShootingStars = () => {
-      const shootingStarsCount = 3;
+      const shootingStarsCount = 5;
       for (let i = 0; i < shootingStarsCount; i++) {
         const shootingStar = document.createElement("div");
         shootingStar.className = "shooting-star";
