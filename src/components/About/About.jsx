@@ -68,6 +68,7 @@ const About = () => {
           </div>
 
           {/* Right Image Section */}
+
           <div className="md:w-1/2 flex justify-center md:justify-end">
             <Tilt
               className="w-48 h-48 sm:w-64 sm:h-64 md:w-80 md:h-80 rounded-full"
@@ -89,6 +90,7 @@ const About = () => {
               />
             </Tilt>
           </div>
+
         </div>
       </section>
 
