@@ -26,7 +26,7 @@ const About = () => {
               <span>
                 <Typewriter
                   words={[
-                    "Aspiring Full-Stack Developer",
+                    "Aspiring AI/ML Engineer",
                     "Software Developer",
                     "Python Learner",
                     "Passionate Coder",
