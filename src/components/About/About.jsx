@@ -5,7 +5,7 @@ import profileImage from '../../assets/profile/pro.png';
 
 /*inline styles*/
 const styles = `
-  @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Dancing+Script:wght@400;500;600;700&family=DM+Mono:wght@300;400;500&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,400;1,500&display=swap');
+  @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Dancing+Script:wght@400;500;600;700&family=DM+Mono:wght@300;400;500&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,400;1,500&family=Raleway:wght@200;300;400;500;600&display=swap');
 
   @keyframes slideUp {
     from { opacity: 0; transform: translateY(24px); }
@@ -181,15 +181,15 @@ const styles = `
   }
 
   .hero-bio {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 1.05rem;
-    font-weight: 400;
+    font-family: 'Raleway', sans-serif;
+    font-size: 16px;
+    font-weight: 300;
     color: #a0a0c0;
     line-height: 1.9;
     max-width: 520px;
     margin-bottom: 28px;
     animation: slideUp .7s cubic-bezier(.16,1,.3,1) .54s both;
-    letter-spacing: 0.02em;
+    letter-spacing: 0.06em;
   }
 
   .social-links {
