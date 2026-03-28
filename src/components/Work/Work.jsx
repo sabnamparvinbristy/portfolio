@@ -1,169 +1,290 @@
-import React, { useState, useEffect } from "react";
-import { projects } from "../../constants";
+import React, { useState } from 'react';
+import { projects } from '../../constants';
 
-const Work = () => {
-  const [selectedProject, setSelectedProject] = useState(null);
-  const [showModal, setShowModal] = useState(false);
+const formal = { fontFamily: 'Poppins, sans-serif' };
+const script  = { fontFamily: "'Dancing Script', cursive" };
 
-  useEffect(() => {
-    if (selectedProject) {
-      const timeout = setTimeout(() => setShowModal(true), 100);
-      return () => clearTimeout(timeout);
-    } else {
-      setShowModal(false);
-    }
-  }, [selectedProject]);
+const theme = {
+  teal: {
+    badge:  { color: '#7C9FBF', background: 'rgba(124,159,191,0.10)', border: '1px solid rgba(124,159,191,0.28)' },
+    card:   'rgba(20,35,55,0.70)',
+    glow:   'rgba(124,159,191,0.14)',
+    accent: '#7C9FBF',
+    strip:  'linear-gradient(90deg,rgba(124,159,191,0.70),transparent)',
+  },
+  purple: {
+    badge:  { color: '#a78bfa', background: 'rgba(167,139,250,0.10)', border: '1px solid rgba(167,139,250,0.28)' },
+    card:   'rgba(25,20,52,0.70)',
+    glow:   'rgba(167,139,250,0.14)',
+    accent: '#a78bfa',
+    strip:  'linear-gradient(90deg,rgba(167,139,250,0.70),transparent)',
+  },
+  violet: {
+    badge:  { color: '#c084fc', background: 'rgba(192,132,252,0.10)', border: '1px solid rgba(192,132,252,0.28)' },
+    card:   'rgba(30,15,56,0.70)',
+    glow:   'rgba(192,132,252,0.14)',
+    accent: '#c084fc',
+    strip:  'linear-gradient(90deg,rgba(192,132,252,0.70),transparent)',
+  },
+};
 
-  const handleOpenModal = (project) => {
-    setSelectedProject(project);
-  };
+const Arrow = () => (
+  <svg width="11" height="11" viewBox="0 0 12 12"
+    fill="none" stroke="currentColor" strokeWidth="1.5">
+    <path d="M2.5 9.5L9.5 2.5M9.5 2.5H4M9.5 2.5V8" />
+  </svg>
+);
 
-  const handleCloseModal = () => {
-    setShowModal(false);
-    setTimeout(() => setSelectedProject(null), 300);
-  };
+const Card = ({ project, onOpen }) => {
+  const [hovered, setHovered] = useState(false);
+  const t = theme[project.color] || theme.teal;
 
   return (
-    <section
-      id="work"
-      className="py-24 px-[12vw] md:px-[7vw] lg:px-[20vw] font-sans relative bg-skills-gradient clip-path-custom"
+    <div
+      onClick={() => onOpen(project)}
+      onMouseEnter={() => setHovered(true)}
+      onMouseLeave={() => setHovered(false)}
+      className="flex flex-col cursor-pointer rounded-2xl border border-white/10
+        overflow-hidden transition-all duration-300 hover:scale-[1.02]"
+      style={{
+        background:    t.card,
+        backdropFilter:'blur(12px)',
+        height:        '100%',
+        boxShadow:     hovered ? `0 0 28px 4px ${t.glow}` : 'none',
+        borderColor:   hovered ? t.accent + '44' : 'rgba(255,255,255,0.10)',
+      }}
     >
-      <div className="text-center mb-16">
-        <h2 className="text-4xl md:text-5xl font-bold text-white tracking-wide">
-  <span className="relative inline-block group">
-    <span
-      className="relative z-10 font-[Dancing Script]"
-      style={{ fontFamily: "'Dancing Script', cursive" }}
-    >
-      PROJECTS
-    </span>
-    <span className="absolute left-1/2 -bottom-1 transform -translate-x-1/2 h-[2px] w-0 bg-[#2EC4B6] transition-all duration-300 group-hover:w-full"></span>
-  </span>
-</h2>
+      {/* Top colour strip */}
+      <div className="h-1 w-full flex-shrink-0" style={{ background: t.strip }} />
 
-
-        <p className="text-gray-400 mt-6 text-lg font-medium max-w-xl mx-auto leading-relaxed">
-          Explore a collection of my projects across different technologies
-          and stacks. Each one reflects creativity, problem-solving, and learning.
-        </p>
-      </div>
-
-      <div className="grid gap-10 grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
-        {projects.map((project) => (
+      <div className="p-6 flex flex-col flex-1">
+        {/* Logo*/}
+        <div className="flex items-center gap-3 mb-3">
           <div
-            key={project.id}
-            onClick={() => handleOpenModal(project)}
-            className="bg-white/5 backdrop-blur-xl border border-white/10 rounded-3xl 
-              shadow-none hover:shadow-[0_0_24px_3px_rgba(168,85,247,0.2)] hover:bg-[rgba(168,85,247,0.07)] 
-              transition-all duration-300 transform hover:scale-105 cursor-pointer focus:outline-none"
-            tabIndex={0}
-            onKeyDown={(e) => e.key === "Enter" && handleOpenModal(project)}
-            role="button"
-            aria-label={`Open project ${project.title}`}
+            className="w-11 h-11 rounded-xl flex items-center justify-center text-xl flex-shrink-0"
+            style={{ background: 'rgba(255,255,255,0.05)', border: `1px solid ${t.accent}33` }}
           >
-            <img
-              src={project.image}
-              alt={project.title}
-              className="w-full h-48 object-cover rounded-t-3xl"
-              loading="lazy"
-            />
-            <div className="p-6">
-              <h3 className="text-2xl text-white font-semibold mb-2 text-center">{project.title}</h3>
-              <p className="text-gray-300 text-sm leading-relaxed line-clamp-3 text-center">
-                {project.description}
-              </p>
-              <div className="flex flex-wrap gap-2 justify-center mt-4">
-                {project.tags.map((tag, index) => (
-                  <span
-                    key={index}
-                    className="bg-[#1b1a2e] text-xs font-medium text-[#2EC4B6] rounded-full px-3 py-1"
-                  >
-                    {tag}
-                  </span>
-                ))}
-              </div>
-            </div>
+            {project.emoji}
           </div>
-        ))}
-      </div>
-
-      {selectedProject && (
-        <div
-          className={`fixed inset-0 z-[9999] flex items-center justify-center bg-black bg-opacity-80 backdrop-blur-sm p-4 transition-opacity duration-300 ${
-            showModal ? "opacity-100" : "opacity-0 pointer-events-none"
-          }`}
-          aria-modal="true"
-          role="dialog"
-          aria-labelledby="modal-title"
-          aria-describedby="modal-description"
-          onClick={handleCloseModal}
-        >
-          <div
-            className="bg-[#1a1a2f] bg-opacity-95 backdrop-blur-md border border-gray-700 rounded-3xl shadow-2xl max-w-3xl w-full relative overflow-hidden animate-fade-in-up"
-            onClick={(e) => e.stopPropagation()}
-          >
-            <button
-              onClick={handleCloseModal}
-              className="absolute top-4 right-4 text-white text-3xl font-bold hover:text-[#a855f7] focus:outline-none"
-              aria-label="Close modal"
-            >
-              &times;
-            </button>
-
-            <div className="flex flex-col p-6 md:p-8">
-              <div className="w-full flex justify-center mb-6">
-                <img
-                  src={selectedProject.image}
-                  alt={selectedProject.title}
-                  className="rounded-xl shadow-lg max-h-72 object-contain"
-                />
-              </div>
-              <h3
-                id="modal-title"
-                className="text-3xl font-bold text-[#a855f7] mb-4 text-center"
-              >
-                {selectedProject.title}
-              </h3>
-              <p
-                id="modal-description"
-                className="text-gray-300 mb-6 text-center leading-relaxed"
-              >
-                {selectedProject.description}
-              </p>
-              <div className="flex flex-wrap gap-3 justify-center mb-6">
-                {selectedProject.tags.map((tag, index) => (
-                  <span
-                    key={index}
-                    className="bg-[#251f38] text-xs font-semibold text-[#2EC4B6] rounded-full px-3 py-1"
-                  >
-                    {tag}
-                  </span>
-                ))}
-              </div>
-              <div className="flex gap-6 justify-center flex-wrap">
-                <a
-                  href={selectedProject.github}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="bg-white/10 hover:bg-[#a855f7] text-white hover:text-black px-6 py-3 rounded-full text-sm font-semibold transition-all duration-300 min-w-[120px] text-center"
-                >
-                  View Code
-                </a>
-                {selectedProject.webapp && (
-                  <a
-                    href={selectedProject.webapp}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="bg-[#a855f7] hover:bg-[#9244d4] text-white px-6 py-3 rounded-full text-sm font-semibold transition-all duration-300 min-w-[120px] text-center"
-                  >
-                    View Live
-                  </a>
-                )}
-              </div>
+          <div className="min-w-0 flex-1">
+            <div className="text-[10px] tracking-[.12em] uppercase mb-0.5 truncate"
+              style={{ ...formal, color: 'rgba(255,255,255,0.35)' }}>
+              {project.type.split('·')[0].trim()}
+            </div>
+            <div className="text-[11px] font-medium truncate"
+              style={{ ...formal, color: t.accent }}>
+              {project.subtitle}
             </div>
           </div>
         </div>
-      )}
+
+        {/* Type badge */}
+        <span
+          className="text-[10px] font-semibold tracking-[.08em] uppercase
+            px-3 py-1.5 rounded-lg w-full text-center mb-4 block"
+          style={{ ...formal, ...t.badge }}
+        >
+          {project.type}
+        </span>
+
+        {/*Divider*/}
+        <div className="h-px mb-4"
+          style={{ background: `linear-gradient(90deg,${t.accent}44 0%,transparent 80%)` }} />
+
+        {/*Title*/}
+        <h3 className="mb-4 leading-snug"
+          style={{ ...script, fontSize: '20px', fontWeight: 600, color: '#ffffff' }}>
+          {project.title}{' '}
+          <span style={{ color: t.accent }}>— {project.subtitle}</span>
+        </h3>
+
+        {/* Detail*/}
+        <div className="flex flex-col gap-2.5 mb-4 flex-1">
+          {[
+            { label: 'Problem',  val: project.problem  },
+            { label: 'Approach', val: project.approach },
+            { label: 'Outcome',  val: project.outcome  },
+          ].map(({ label, val }) => (
+            <div key={label} className="flex gap-2">
+              <span className="text-[9px] tracking-[.1em] uppercase flex-shrink-0 w-16 pt-0.5"
+                style={{ ...formal, color: 'rgba(255,255,255,0.28)' }}>
+                {label}
+              </span>
+              <span className="text-xs leading-relaxed"
+                style={{ ...formal, color: 'rgba(255,255,255,0.58)' }}>
+                {val}
+              </span>
+            </div>
+          ))}
+        </div>
+
+        {/*Tag*/}
+        <div className="flex flex-wrap gap-1.5 mb-4">
+          {project.tags.map(tag => (
+            <span key={tag} className="px-2.5 py-0.5 rounded-full text-[10px]"
+              style={{ ...formal, background: 'rgba(255,255,255,0.05)',
+                border: `1px solid ${t.accent}33`, color: t.accent }}>
+              {tag}
+            </span>
+          ))}
+        </div>
+
+        {/*footer*/}
+        <div className="flex items-center justify-between pt-3 border-t border-white/10 mt-auto gap-3">
+          <span className="text-[10px]"
+            style={{ ...formal, color: 'rgba(255,255,255,0.22)' }}>
+            Click for details
+          </span>
+          <a
+            href={project.github}
+            target="_blank"
+            rel="noopener noreferrer"
+            onClick={e => e.stopPropagation()}
+            className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg
+              text-[10px] font-semibold tracking-[.06em] uppercase
+              transition-all duration-200 hover:gap-2.5 flex-shrink-0"
+            style={{ ...formal, ...t.badge }}
+          >
+            GitHub <Arrow />
+          </a>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+/*Modal*/
+const Modal = ({ project, onClose }) => {
+  const t = theme[project?.color] || theme.teal;
+  React.useEffect(() => {
+    const esc = e => { if (e.key === 'Escape') onClose(); };
+    document.addEventListener('keydown', esc);
+    return () => document.removeEventListener('keydown', esc);
+  }, [onClose]);
+  if (!project) return null;
+
+  return (
+    <div className="fixed inset-0 z-[9999] flex items-center justify-center
+      bg-black/85 backdrop-blur-sm p-4"
+      style={{ animation: 'fadeIn .25s ease' }}
+      onClick={onClose}
+    >
+      <div className="rounded-3xl max-w-2xl w-full p-8 relative
+        overflow-y-auto max-h-[90vh] border border-white/10"
+        style={{ background: 'linear-gradient(135deg,#0d1420,#12102a)',
+          animation: 'slideUp .3s cubic-bezier(.16,1,.3,1)' }}
+        onClick={e => e.stopPropagation()}
+      >
+        <button onClick={onClose}
+          className="absolute top-4 right-5 text-2xl text-gray-600
+            hover:text-white transition-colors bg-transparent border-none cursor-pointer">
+          ×
+        </button>
+        <div className="w-full h-24 rounded-2xl flex items-center justify-center text-5xl mb-6"
+          style={{ background: `linear-gradient(135deg,${t.accent}15,rgba(255,255,255,0.02))`,
+            border: `1px solid ${t.accent}22` }}>
+          {project.emoji}
+        </div>
+        <h3 className="text-white mb-3"
+          style={{ ...script, fontSize: '26px', fontWeight: 700 }}>
+          {project.title} <span style={{ color: t.accent }}>— {project.subtitle}</span>
+        </h3>
+        <span className="text-[9px] font-semibold tracking-[.1em] uppercase
+          px-3 py-1 rounded inline-block mb-5"
+          style={{ ...formal, ...t.badge }}>
+          {project.type}
+        </span>
+        <p className="text-sm leading-relaxed mb-5"
+          style={{ ...formal, color: 'rgba(255,255,255,0.55)' }}>
+          {project.description}
+        </p>
+        <div className="flex flex-col gap-3 p-5 rounded-xl mb-5"
+          style={{ background: 'rgba(255,255,255,0.03)', border: '1px solid rgba(255,255,255,0.07)' }}>
+          {[
+            { label: 'Problem',  val: project.problem  },
+            { label: 'Approach', val: project.approach },
+            { label: 'Outcome',  val: project.outcome  },
+          ].map(({ label, val }) => (
+            <div key={label} className="flex gap-4">
+              <span className="text-[9px] tracking-[.1em] uppercase w-20 flex-shrink-0 pt-0.5"
+                style={{ ...formal, color: 'rgba(255,255,255,0.30)' }}>
+                {label}
+              </span>
+              <span className="text-sm leading-relaxed"
+                style={{ ...formal, color: 'rgba(255,255,255,0.60)' }}>
+                {val}
+              </span>
+            </div>
+          ))}
+        </div>
+        <div className="flex flex-wrap gap-2 mb-6">
+          {project.tags.map(tag => (
+            <span key={tag} className="px-3 py-1 rounded-full text-[10px]"
+              style={{ ...formal, background: `${t.accent}12`,
+                border: `1px solid ${t.accent}33`, color: t.accent }}>
+              {tag}
+            </span>
+          ))}
+        </div>
+        <div className="flex gap-3 flex-wrap">
+          <a href={project.github} target="_blank" rel="noopener noreferrer"
+            className="px-6 py-2.5 rounded-full text-sm font-semibold text-white
+              hover:brightness-110 hover:scale-105 transition-all duration-300"
+            style={{ ...formal, background: `linear-gradient(90deg,${t.accent}cc,${t.accent})` }}>
+            View on GitHub
+          </a>
+          <button onClick={onClose}
+            className="px-6 py-2.5 rounded-full text-sm font-semibold text-white
+              border border-white/20 hover:border-white/40
+              transition-all duration-300 bg-transparent cursor-pointer"
+            style={formal}>
+            Close
+          </button>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+const Work = () => {
+  const [selected, setSelected] = useState(null);
+
+  return (
+    <section id="work"
+      className="py-24 px-[8vw] md:px-[6vw] lg:px-[10vw] font-sans clip-path-custom"
+      style={{ background: 'linear-gradient(135deg,#050414 0%,#0b0a24 50%,#0f1a2e 100%)' }}
+    >
+      <div className="text-center mb-16 reveal">
+        <h2 className="text-4xl md:text-5xl font-bold text-white">
+  <span className="relative inline-block group">
+    <span className="relative z-10" style={{ fontFamily: "'Dancing Script', cursive" }}>Projects</span>
+            <span className="absolute left-1/2 -bottom-1 -translate-x-1/2
+              h-[2px] w-0 bg-[#7C9FBF] transition-all duration-300 group-hover:w-full" />
+          </span>
+        </h2>
+        <p className="text-gray-500 mt-6 text-base max-w-xl mx-auto leading-relaxed" style={formal}>
+          A collection of projects built across different technologies —
+          each one a step forward in problem-solving and engineering.
+        </p>
+      </div>
+
+      <div className="grid gap-8 grid-cols-1 md:grid-cols-3 items-stretch reveal-scale">
+        {projects.map(p => (
+          <Card key={p.id} project={p} onOpen={setSelected} />
+        ))}
+      </div>
+
+      <div className="text-center mt-12 reveal">
+        <a href="https://github.com/sabnamparvinbristy" target="_blank" rel="noopener noreferrer"
+          className="inline-flex items-center gap-2 px-7 py-3 rounded-full
+            text-sm font-semibold text-white border border-white/20
+            hover:border-[#7C9FBF] hover:text-[#7C9FBF] transition-all duration-300"
+          style={formal}>
+          View All Repositories →
+        </a>
+      </div>
+
+      {selected && <Modal project={selected} onClose={() => setSelected(null)} />}
     </section>
   );
 };
