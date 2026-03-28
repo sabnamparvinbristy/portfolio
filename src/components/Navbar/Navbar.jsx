@@ -1,181 +1,143 @@
-import React, { useEffect, useState } from "react";
-import { FiMenu, FiX } from "react-icons/fi";
-import { FaGithub, FaLinkedin, FaFacebook } from "react-icons/fa";
+import React, { useState, useEffect } from 'react';
+import { FiMenu, FiX } from 'react-icons/fi';
+import { FaGithub, FaLinkedin, FaFacebook } from 'react-icons/fa';
+
+const menuItems = [
+  { id: 'about',     label: 'About'     },
+  { id: 'skills',    label: 'Skills'    },
+  { id: 'work',      label: 'Projects'  },
+  { id: 'education', label: 'Education' },
+  { id: 'contact',   label: 'Contact'   },
+];
 
 const Navbar = () => {
-  const [isOpen, setIsOpen] = useState(false);
-  const [activeSection, setActiveSection] = useState("");
-  const [isScrolled, setIsScrolled] = useState(false);
-
-  
-  const menuItems = [
-    { id: "about", label: "About" },
-    { id: "skills", label: "Skills" },
-    { id: "work", label: "Projects" },
-    { id: "education", label: "Education" },
-    { id: "contact", label: "Contact" }, 
-  ];
+  const [isOpen,   setIsOpen]   = useState(false);
+  const [active,   setActive]   = useState('');
+  const [scrolled, setScrolled] = useState(false);
 
   useEffect(() => {
-    const handleScroll = () => {
-      const scrollPos = window.scrollY + 100;
-      menuItems.forEach((item) => {
-        const section = document.getElementById(item.id);
-        if (
-          section &&
-          section.offsetTop <= scrollPos &&
-          section.offsetTop + section.offsetHeight > scrollPos
-        ) {
-          setActiveSection(item.id);
-        }
+    
+
+    const onScroll = () => {
+      setScrolled(window.scrollY > 20);
+      const pos = window.scrollY + 100;
+      menuItems.forEach(({ id }) => {
+        const el = document.getElementById(id);
+        if (el && el.offsetTop <= pos && el.offsetTop + el.offsetHeight > pos)
+          setActive(id);
       });
-
-      setIsScrolled(scrollPos > 50);
     };
+    window.addEventListener('scroll', onScroll, { passive: true });
+    return () => window.removeEventListener('scroll', onScroll);
+  }, []);
 
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, [menuItems]);
-
-  const handleMenuItemClick = (sectionId) => {
-    setActiveSection(sectionId);
+  const scrollTo = (id) => {
     setIsOpen(false);
-    const target = document.getElementById(sectionId);
-    if (target) {
-      target.scrollIntoView({ behavior: "smooth" });
-    }
+    document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' });
   };
 
   return (
     <nav
-      className={`fixed top-0 w-full z-50 transition duration-300 px-[7vw] md:px-[7vw] lg:px-[20vw] ${
-        isScrolled
-          ? "bg-[#050414]/70 backdrop-blur-xl border-b border-white/10 shadow-md"
-          : "bg-transparent"
-      }`}
-      style={{ fontFamily: "Poppins, sans-serif" }}
+      className={`fixed top-0 w-full z-50 transition-all duration-300
+        px-[7vw] md:px-[7vw] lg:px-[20vw]
+        ${scrolled
+          ? 'bg-[#050414]/80 backdrop-blur-xl border-b border-white/10 shadow-lg'
+          : 'bg-transparent'}`}
     >
-      <div className="text-white py-5 flex justify-between items-center">
-        {/* Logo */}
-        <div className="text-lg font-semibold cursor-pointer">
-          <span className="text-[#2EC4B6]">&lt;</span>
-          <span className="text-white">Sabnam Parvin Bristy</span>
-          <span className="text-[#2EC4B6]">&gt;</span>
-        </div>
+      <div className="flex items-center justify-between py-5 text-white">
 
-        {/* Desktop Menu */}
-        <ul className="hidden md:flex space-x-8 text-sm tracking-wide text-gray-300">
-          {menuItems.map((item) => (
-            <li
-              key={item.id}
-              className={`relative group cursor-pointer ${
-                activeSection === item.id ? "text-[#2EC4B6]" : ""
-              }`}
-            >
-              <button onClick={() => handleMenuItemClick(item.id)} className="relative z-10">
-                {item.label}
+        {/*Logo*/}
+        <button
+          onClick={() => scrollTo('about')}
+          className="text-2xl md:text-3xl font-semibold bg-transparent border-none cursor-pointer"
+          style={{ fontFamily: "'Dancing Script', cursive" }}
+        >
+          <span className="text-[#7C9FBF]">&lt;</span>
+          <span className="text-white">Sabnam Parvin Bristy</span>
+          <span className="text-[#7C9FBF]">&gt;</span>
+        </button>
+
+        {/* Desktop links*/}
+        <ul className="hidden md:flex space-x-8 text-sm tracking-wide">
+          {menuItems.map(({ id, label }) => (
+            <li key={id} className="relative group">
+              <button
+                onClick={() => scrollTo(id)}
+                className={`bg-transparent border-none cursor-pointer text-sm
+                  transition-colors duration-200
+                  ${active === id ? 'text-[#7C9FBF]' : 'text-gray-400 hover:text-white'}`}
+                style={{ fontFamily: "'Jost', sans-serif", letterSpacing: '0.05em' }}
+              >
+                {label}
               </button>
-              <span className="absolute left-0 bottom-0 w-0 h-[2px] bg-[#2EC4B6] transition-all duration-300 group-hover:w-full"></span>
+              <span
+                className={`absolute left-0 -bottom-0.5 h-[2px] bg-[#7C9FBF]
+                  transition-all duration-300
+                  ${active === id ? 'w-full' : 'w-0 group-hover:w-full'}`}
+              />
             </li>
           ))}
         </ul>
 
-        {/* Desktop Socials */}
-        <div className="hidden md:flex space-x-4">
-          <a
-            href="https://github.com/sabnamparvinbristy"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-gray-300 hover:text-[#2EC4B6]"
-          >
-            <FaGithub size={22} />
-          </a>
-          <a
-            href="https://www.linkedin.com/in/sabnamparvin"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-gray-300 hover:text-[#2EC4B6]"
-          >
-            <FaLinkedin size={22} />
-          </a>
-          <a
-            href="https://www.facebook.com/sabnamsp10"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-gray-300 hover:text-[#2EC4B6]"
-          >
-            <FaFacebook size={22} />
-          </a>
+        {/* Desktop right*/}
+        <div className="hidden md:flex items-center gap-5">
+          {[
+            { href: 'https://github.com/sabnamparvinbristy',    Icon: FaGithub,   label: 'GitHub'   },
+            { href: 'https://www.linkedin.com/in/sabnamparvin', Icon: FaLinkedin, label: 'LinkedIn' },
+            { href: 'https://www.facebook.com/sabnamsp10',      Icon: FaFacebook, label: 'Facebook' },
+          ].map(({ href, Icon, label }) => (
+            <a
+              key={label}
+              href={href}
+              target="_blank"
+              rel="noopener noreferrer"
+              title={label}
+              className="text-gray-500 hover:text-[#7C9FBF] transition-colors duration-200"
+            >
+              <Icon size={22} />
+            </a>
+          ))}
         </div>
 
-        {/* Mobile Icon */}
-        <div className="md:hidden">
-          {isOpen ? (
-            <FiX
-              className="text-3xl text-[#2EC4B6] cursor-pointer"
-              onClick={() => setIsOpen(false)}
-            />
-          ) : (
-            <FiMenu
-              className="text-3xl text-[#2EC4B6] cursor-pointer"
-              onClick={() => {
-                setIsOpen(true);
-                setActiveSection("");
-              }}
-            />
-          )}
-        </div>
+        {/* Mobile icon */}
+        <button
+          className="md:hidden bg-transparent border-none cursor-pointer text-[#7C9FBF]"
+          onClick={() => setIsOpen(o => !o)}
+        >
+          {isOpen ? <FiX size={24} /> : <FiMenu size={24} />}
+        </button>
       </div>
 
-      {/* Mobile Menu */}
+      {/* Mobile dropdown*/}
       {isOpen && (
-        <div className="absolute top-16 left-1/2 transform -translate-x-1/2 w-4/5 bg-[#050414]/80 backdrop-blur-lg z-50 rounded-lg shadow-lg transition-all duration-300">
-          <ul className="flex flex-col items-center space-y-4 py-4 text-gray-300 w-full">
-            {menuItems.map((item) => (
-              <li
-                key={item.id}
-                className={`w-full text-center relative group ${
-                  activeSection === item.id ? "text-[#2EC4B6]" : "text-gray-300"
-                }`}
+        <div className="absolute top-[68px] left-1/2 -translate-x-1/2 w-4/5
+          bg-[#050414]/95 backdrop-blur-lg rounded-2xl border border-white/10
+          shadow-xl z-50 py-3">
+          {menuItems.map(({ id, label }) => (
+            <button
+              key={id}
+              onClick={() => scrollTo(id)}
+              className={`block w-full text-center py-3 text-sm
+                bg-transparent border-none cursor-pointer transition-colors duration-200
+                ${active === id ? 'text-[#7C9FBF]' : 'text-gray-400 hover:text-white'}`}
+              style={{ fontFamily: "'Jost', sans-serif", letterSpacing: '0.05em' }}
+            >
+              {label}
+            </button>
+          ))}
+          <div className="flex justify-center gap-5 pt-3 pb-1">
+            {[
+              { href: 'https://github.com/sabnamparvinbristy',    Icon: FaGithub   },
+              { href: 'https://www.linkedin.com/in/sabnamparvin', Icon: FaLinkedin },
+              { href: 'https://www.facebook.com/sabnamsp10',      Icon: FaFacebook },
+            ].map(({ href, Icon }, i) => (
+              <a key={i} href={href} target="_blank" rel="noopener noreferrer"
+                className="text-gray-500 hover:text-[#7C9FBF] transition-colors"
               >
-                <button
-                  onClick={() => handleMenuItemClick(item.id)}
-                  className="w-full px-4 py-2 transition"
-                >
-                  {item.label}
-                </button>
-                <span className="absolute left-1/2 transform -translate-x-1/2 bottom-1 h-[2px] w-0 bg-[#2EC4B6] group-hover:w-4 transition-all duration-300"></span>
-              </li>
+                <Icon size={24} />
+              </a>
             ))}
-
-            {/* Socials on Mobile */}
-            <div className="flex space-x-4 pt-2">
-              <a
-                href="https://github.com/sabnamparvinbristy"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-gray-300 hover:text-white"
-              >
-                <FaGithub size={24} />
-              </a>
-              <a
-                href="https://www.linkedin.com/in/sabnamparvin"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-gray-300 hover:text-white"
-              >
-                <FaLinkedin size={24} />
-              </a>
-              <a
-                href="https://www.facebook.com/sabnamsp10"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-gray-300 hover:text-white"
-              >
-                <FaFacebook size={24} />
-              </a>
-            </div>
-          </ul>
+          </div>
         </div>
       )}
     </nav>
@@ -183,3 +145,4 @@ const Navbar = () => {
 };
 
 export default Navbar;
+
