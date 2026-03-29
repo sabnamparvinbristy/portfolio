@@ -468,7 +468,6 @@ const About = () => {
                 <span className="typewriter-accent">
                   <Typewriter
                     words={[
-                      'Full-Stack Developer',
                       'Aspiring AI/ML Engineer',
                       'Bioinformatics Researcher',
                       'React · Node.js Developer',
@@ -487,7 +486,7 @@ const About = () => {
 
               <p className="hero-bio">
                 A full-stack developer with a passion for building robust, scalable applications.
-                Experienced across Python, ML/AI, and Bioinformatics — focused on writing clean code
+                Experienced across Python, ML/AI and Bioinformatics — focused on writing clean code
                 and delivering solutions that create real impact.
               </p>
 

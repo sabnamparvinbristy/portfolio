@@ -129,7 +129,7 @@ const Loader = () => {
         transform:     phase >= 2 ? 'translateY(0)' : 'translateY(8px)',
         transition:    'opacity .5s ease, transform .5s ease',
       }}>
-        Full-Stack Developer · Bioinformatics Researcher
+        Bioinformatics Researcher · Tech Explorer 
       </div>
 
       {/*bottom line*/}
