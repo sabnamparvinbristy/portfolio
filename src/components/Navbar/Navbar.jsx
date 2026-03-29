@@ -209,9 +209,9 @@ const Navbar = () => {
             ].map(({ href, Icon }, i) => (
               <a
                 key={i} href={href} target="_blank" rel="noopener noreferrer"
-                style={{ color: 'rgba(168,85,247,0.50)', transition: 'all 0.2s ease' }}
-                onMouseEnter={e => { e.currentTarget.style.color = '#c084fc'; e.currentTarget.style.transform = 'translateY(-2px)'; }}
-                onMouseLeave={e => { e.currentTarget.style.color = 'rgba(168,85,247,0.50)'; e.currentTarget.style.transform = 'translateY(0)'; }}
+                style={{ color:'#6b7280', transition: 'all 0.2s ease' }}
+                onMouseEnter={e => { e.currentTarget.style.color = '##7C9FBF'; e.currentTarget.style.transform = 'translateY(-2px)'; }}
+                onMouseLeave={e => { e.currentTarget.style.color = '#6b7280'; e.currentTarget.style.transform = 'translateY(0)'; }}
               >
                 <Icon size={20} />
               </a>
