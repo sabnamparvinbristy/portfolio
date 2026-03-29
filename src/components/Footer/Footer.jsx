@@ -110,7 +110,7 @@ const Footer = () => {
           pointerEvents: 'none',
         }} />
 
-        {/* Fine top rule*/}
+        {/* Fine top rule */}
         <div style={{
           height: '1px',
           background: 'linear-gradient(90deg, transparent 0%, rgba(124,159,191,0.25) 30%, rgba(167,139,250,0.20) 70%, transparent 100%)',
@@ -122,7 +122,7 @@ const Footer = () => {
           position: 'relative', zIndex: 1,
         }}>
 
-          {/*Name block*/}
+          {/* Name block */}
           <div style={{ textAlign: 'center', marginBottom: '36px' }}>
             <h2 style={{
               fontFamily: "'Dancing Script', cursive",
@@ -143,19 +143,19 @@ const Footer = () => {
                 letterSpacing: '0.22em', textTransform: 'uppercase',
                 color: 'rgba(210,220,235,0.30)',
               }}>
-                Full-Stack Developer&ensp;·&ensp;Bioinformatics Researcher&ensp;·&ensp;CSE Student
+                Full-Stack Developer&ensp;·&ensp;Bioinformatics Researcher&ensp;·&ensp;CSE&nbsp;Student
               </span>
             </div>
           </div>
 
-          {/*Thin rule*/}
+          {/* Thin rule */}
           <div style={{
             height: '1px',
             background: 'linear-gradient(90deg, transparent, rgba(255,255,255,0.06), transparent)',
             marginBottom: '28px',
           }} />
 
-          {/*Nav links*/}
+          {/* Nav links */}
           <nav style={{
             display: 'flex', flexWrap: 'wrap',
             justifyContent: 'center', gap: '6px 28px', marginBottom: '28px',
@@ -167,7 +167,7 @@ const Footer = () => {
             ))}
           </nav>
 
-          {/*Social icons*/}
+          {/* Social icons */}
           <div style={{
             display: 'flex', justifyContent: 'center',
             gap: '12px', marginBottom: '32px',
@@ -181,14 +181,14 @@ const Footer = () => {
             ))}
           </div>
 
-          {/*Fine rule*/}
+          {/* Fine rule */}
           <div style={{
             height: '1px',
             background: 'linear-gradient(90deg, transparent, rgba(255,255,255,0.05), transparent)',
             marginBottom: '20px',
           }} />
 
-          {/*copyright with auto year*/}
+          {/* Copyright */}
           <p style={{
             textAlign: 'center',
             fontFamily: "'Jost', sans-serif",
@@ -206,7 +206,7 @@ const Footer = () => {
 
         </div>
 
-        {/*bottom accent strip*/}
+        {/* Bottom accent strip */}
         <div style={{
           height: '2px',
           background: 'linear-gradient(90deg, transparent 0%, rgba(124,159,191,0.20) 25%, rgba(167,139,250,0.18) 75%, transparent 100%)',
@@ -217,4 +217,3 @@ const Footer = () => {
 };
 
 export default Footer;
-
