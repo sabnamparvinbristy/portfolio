@@ -143,7 +143,7 @@ const Footer = () => {
                 letterSpacing: '0.22em', textTransform: 'uppercase',
                 color: 'rgba(210,220,235,0.30)',
               }}>
-                Full-Stack Developer&ensp;·&ensp;Bioinformatics Researcher&ensp;·&ensp;CSE&nbsp;Student
+                ML & AI Researcher&ensp;·&ensp;Bioinformatics Researcher&ensp;·&ensp;Tech&nbsp;Explorer
               </span>
             </div>
           </div>
