@@ -4,7 +4,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import emailjs from '@emailjs/browser';
 import { FaGithub, FaLinkedin, FaFacebook } from 'react-icons/fa';
 
-const cg = { fontFamily: "'Raleway', sans-serif" };
+const cg = { fontFamily: 'Poppins, sans-serif' };
 
 const Contact = () => {
   const form    = useRef();
@@ -37,7 +37,6 @@ const Contact = () => {
         });
       });
   };
-
   const inputBase = `w-full p-3 rounded-lg text-white
     border border-white/20 bg-[#131025]
     focus:outline-none focus:border-[#a855f7]
@@ -52,7 +51,7 @@ const Contact = () => {
     >
       <ToastContainer />
 
-      {/*Title*/}
+      {/* Title */}
       <div className="text-center mb-16 reveal">
         <h2 className="text-4xl md:text-5xl font-bold text-white tracking-wide">
           <span className="relative inline-block group">
@@ -65,18 +64,16 @@ const Contact = () => {
             <span className="absolute left-1/2 -bottom-1 -translate-x-1/2 h-[2px] w-0 bg-[#2EC4B6] transition-all duration-300 group-hover:w-full" />
           </span>
         </h2>
-        {/*subtitle*/}
-        <p className="text-gray-400 mt-4 max-w-xl mx-auto leading-relaxed"
-          style={{ ...cg, fontSize: '18px', fontWeight: 400, letterSpacing: '0.06em' }}>
+        <p className="text-gray-500 mt-6 text-base max-w-2xl mx-auto leading-relaxed">
           Actively looking for internship opportunities,
-          freelance projects or full-stack developer roles.
+          freelance projects, or full-stack developer roles.
         </p>
       </div>
 
-      {/* 2column */}
+      {/* Two-column */}
       <div className="w-full max-w-4xl grid grid-cols-1 md:grid-cols-2 gap-10">
 
-        {/*Left info*/}
+        {/* Left info */}
         <div className="reveal-left flex flex-col justify-center gap-6">
           <div>
             <h3
@@ -85,14 +82,15 @@ const Contact = () => {
             >
               Let's build something great.
             </h3>
-            <p className="text-gray-400 leading-relaxed"
-              style={{ ...cg, fontSize: '16px', fontWeight: 400, letterSpacing: '0.05em' }}>
+            <p className="text-gray-500 text-sm max-w-2xl mx-auto leading-relaxed">
               Open to local and remote positions.
               Feel free to reach out for any opportunity or just to say hi!
             </p>
+
+  
           </div>
 
-          {/*Contact details*/}
+          {/* Contact details */}
           {[
             { icon: '✉', text: 'sabnamparvinbristy@gmail.com',
               href: 'mailto:sabnamparvinbristy@gmail.com' },
@@ -105,8 +103,7 @@ const Contact = () => {
                 text-gray-300">
                 {icon}
               </div>
-              <span className="text-gray-300"
-                style={{ ...cg, fontSize: '15px', fontWeight: 400, letterSpacing: '0.06em' }}>
+              <span className="text-xs text-gray-300 tracking-wide">
                 {href
                   ? <a href={href}
                       className="hover:text-[#2EC4B6] transition-colors duration-200">
@@ -118,7 +115,7 @@ const Contact = () => {
             </div>
           ))}
 
-          {/*Socials*/}
+          {/* Socials */}
           <div className="flex gap-3 mt-1">
             {[
               { href: 'https://github.com/sabnamparvinbristy',    Icon: FaGithub   },
@@ -132,7 +129,7 @@ const Contact = () => {
                 rel="noopener noreferrer"
                 className="w-9 h-9 rounded-lg border border-white/10
                   flex items-center justify-center text-gray-400
-                  hover:text-[#2EC4B6] hover:border-[#2EC4B6]/50
+                  hover:text-[#a78bfa] hover:border-[#c084fc]/50
                   hover:-translate-y-0.5 transition-all duration-200"
               >
                 <Icon size={20} />
@@ -141,40 +138,42 @@ const Contact = () => {
           </div>
         </div>
 
-        {/*Right form*/}
+        {/* Right form */}
         <div className="glass-card p-7 hover:scale-[1.02] reveal-right">
-
-          {/*Connect With Me */}
-          <h3 className="text-white text-center mb-6"
-            style={{ ...cg, fontSize: '20px', fontWeight: 500, letterSpacing: '0.14em' }}>
-            Connect With Me <span className="ml-1">🚀</span>
-          </h3>
+          {/* Connect With Me */}
+<h3 className="text-white text-center mb-6"
+  style={{ 
+    fontFamily: "'Raleway', sans-serif",
+    fontSize: '20px', 
+    fontWeight: 700,        // bump from 500 → 700
+    letterSpacing: '0.20em', // wider spacing
+    textTransform: 'uppercase', // makes Raleway shine
+  }}>
+  Connect With Me <span className="ml-1">🚀</span>
+</h3>
 
           <form ref={form} onSubmit={sendEmail}
             className="flex flex-col gap-4">
             <input
-              type="email" name="email"
+              type="email" name="user_email"
               placeholder="Your Email" required
               className={inputBase}
-              style={{ ...cg, fontSize: '15px', letterSpacing: '0.05em' }}
             />
             <input
-              type="text" name="name"
+              type="text" name="user_name"
               placeholder="Your Name" required
               className={inputBase}
-              style={{ ...cg, fontSize: '15px', letterSpacing: '0.05em' }}
             />
             <input
-              type="text" name="title"
+              type="text" name="subject"
               placeholder="Subject" required
               className={inputBase}
-              style={{ ...cg, fontSize: '15px', letterSpacing: '0.05em' }}
             />
             <textarea
               name="message" rows="4"
               placeholder="Message" required
               className={inputBase}
-              style={{ resize: 'none', ...cg, fontSize: '15px', letterSpacing: '0.05em' }}
+              style={{ resize: 'none' }}
             />
 
             <button
@@ -187,14 +186,16 @@ const Contact = () => {
                 disabled:opacity-60 disabled:cursor-not-allowed
                 border-none cursor-pointer"
               style={{
-                background: '#1B2A4A',
-                boxShadow: '0 4px 18px rgba(27,42,74,0.40)',
-                border: '1px solid rgba(168,85,247,0.35)',
-                ...cg,
-                fontSize: '15px',
-                letterSpacing: '0.12em',
-                color: '#c084fc',
-              }}
+  background: '#1B2A4A',
+  boxShadow: '0 4px 18px rgba(27,42,74,0.40)',
+  border: '1px solid rgba(168,85,247,0.35)',
+  fontFamily: "'Raleway', sans-serif",
+  fontSize: '13px',
+  fontWeight: 700,
+  letterSpacing: '0.20em',
+  textTransform: 'uppercase',
+  color: '#c084fc',
+}}
             >
               {sending ? 'Sending…' : 'Send Message'}
             </button>
