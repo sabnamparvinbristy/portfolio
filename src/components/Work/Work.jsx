@@ -28,6 +28,10 @@ const theme = {
   },
 };
 
+// Cycles colors left→right: teal, purple, violet, teal, purple, violet…
+const COLOR_CYCLE = ['teal', 'purple', 'violet'];
+const getColor = (index) => COLOR_CYCLE[index % 3];
+
 const Arrow = () => (
   <svg width="11" height="11" viewBox="0 0 12 12"
     fill="none" stroke="currentColor" strokeWidth="1.5">
@@ -35,13 +39,21 @@ const Arrow = () => (
   </svg>
 );
 
-const Card = ({ project, onOpen }) => {
+const ExternalLink = () => (
+  <svg width="11" height="11" viewBox="0 0 12 12"
+    fill="none" stroke="currentColor" strokeWidth="1.5">
+    <path d="M1 11L11 1M11 1H5M11 1V7" />
+  </svg>
+);
+
+const Card = ({ project, index, onOpen }) => {
   const [hovered, setHovered] = useState(false);
-  const t = theme[project.color] || theme.teal;
+  const color = project.color || getColor(index);
+  const t = theme[color] || theme.teal;
 
   return (
     <div
-      onClick={() => onOpen(project)}
+      onClick={() => onOpen({ ...project, color })}
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
       className="flex flex-col cursor-pointer rounded-2xl border border-white/10
@@ -58,7 +70,7 @@ const Card = ({ project, onOpen }) => {
       <div className="h-1 w-full flex-shrink-0" style={{ background: t.strip }} />
 
       <div className="p-6 flex flex-col flex-1">
-        {/* Logo*/}
+        {/* Logo */}
         <div className="flex items-center gap-3 mb-3">
           <div
             className="w-11 h-11 rounded-xl flex items-center justify-center text-xl flex-shrink-0"
@@ -87,18 +99,18 @@ const Card = ({ project, onOpen }) => {
           {project.type}
         </span>
 
-        {/*Divider*/}
+        {/* Divider */}
         <div className="h-px mb-4"
           style={{ background: `linear-gradient(90deg,${t.accent}44 0%,transparent 80%)` }} />
 
-        {/*Title*/}
+        {/* Title */}
         <h3 className="mb-4 leading-snug"
           style={{ ...script, fontSize: '20px', fontWeight: 600, color: '#ffffff' }}>
           {project.title}{' '}
           <span style={{ color: t.accent }}>— {project.subtitle}</span>
         </h3>
 
-        {/* Detail*/}
+        {/* Details */}
         <div className="flex flex-col gap-2.5 mb-4 flex-1">
           {[
             { label: 'Problem',  val: project.problem  },
@@ -118,7 +130,7 @@ const Card = ({ project, onOpen }) => {
           ))}
         </div>
 
-        {/*Tag*/}
+        {/* Tags */}
         <div className="flex flex-wrap gap-1.5 mb-4">
           {project.tags.map(tag => (
             <span key={tag} className="px-2.5 py-0.5 rounded-full text-[10px]"
@@ -129,31 +141,47 @@ const Card = ({ project, onOpen }) => {
           ))}
         </div>
 
-        {/*footer*/}
-        <div className="flex items-center justify-between pt-3 border-t border-white/10 mt-auto gap-3">
+        {/* Footer */}
+        <div className="flex items-center justify-between pt-3 border-t border-white/10 mt-auto gap-2 flex-wrap">
           <span className="text-[10px]"
             style={{ ...formal, color: 'rgba(255,255,255,0.22)' }}>
             Click for details
           </span>
-          <a
-            href={project.github}
-            target="_blank"
-            rel="noopener noreferrer"
-            onClick={e => e.stopPropagation()}
-            className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg
-              text-[10px] font-semibold tracking-[.06em] uppercase
-              transition-all duration-200 hover:gap-2.5 flex-shrink-0"
-            style={{ ...formal, ...t.badge }}
-          >
-            GitHub <Arrow />
-          </a>
+          <div className="flex items-center gap-2 flex-shrink-0">
+            {project.live && (
+              <a
+                href={project.live}
+                target="_blank"
+                rel="noopener noreferrer"
+                onClick={e => e.stopPropagation()}
+                className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg
+                  text-[10px] font-semibold tracking-[.06em] uppercase
+                  transition-all duration-200 hover:gap-2.5"
+                style={{ ...formal, background: t.accent, color: '#fff' }}
+              >
+                Live <ExternalLink />
+              </a>
+            )}
+            <a
+              href={project.github}
+              target="_blank"
+              rel="noopener noreferrer"
+              onClick={e => e.stopPropagation()}
+              className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg
+                text-[10px] font-semibold tracking-[.06em] uppercase
+                transition-all duration-200 hover:gap-2.5"
+              style={{ ...formal, ...t.badge }}
+            >
+              GitHub <Arrow />
+            </a>
+          </div>
         </div>
       </div>
     </div>
   );
 };
 
-/*Modal*/
+/* Modal */
 const Modal = ({ project, onClose }) => {
   const t = theme[project?.color] || theme.teal;
   React.useEffect(() => {
@@ -227,6 +255,14 @@ const Modal = ({ project, onClose }) => {
           ))}
         </div>
         <div className="flex gap-3 flex-wrap">
+          {project.live && (
+            <a href={project.live} target="_blank" rel="noopener noreferrer"
+              className="px-6 py-2.5 rounded-full text-sm font-semibold text-white
+                hover:brightness-110 hover:scale-105 transition-all duration-300"
+              style={{ ...formal, background: t.accent }}>
+              View Live Demo ↗
+            </a>
+          )}
           <a href={project.github} target="_blank" rel="noopener noreferrer"
             className="px-6 py-2.5 rounded-full text-sm font-semibold text-white
               hover:brightness-110 hover:scale-105 transition-all duration-300"
@@ -256,8 +292,8 @@ const Work = () => {
     >
       <div className="text-center mb-16 reveal">
         <h2 className="text-4xl md:text-5xl font-bold text-white">
-  <span className="relative inline-block group">
-    <span className="relative z-10" style={{ fontFamily: "'Dancing Script', cursive" }}>Projects</span>
+          <span className="relative inline-block group">
+            <span className="relative z-10" style={{ fontFamily: "'Dancing Script', cursive" }}>Projects</span>
             <span className="absolute left-1/2 -bottom-1 -translate-x-1/2
               h-[2px] w-0 bg-[#7C9FBF] transition-all duration-300 group-hover:w-full" />
           </span>
@@ -268,9 +304,9 @@ const Work = () => {
         </p>
       </div>
 
-      <div className="grid gap-8 grid-cols-1 md:grid-cols-3 items-stretch reveal-scale">
-        {projects.map(p => (
-          <Card key={p.id} project={p} onOpen={setSelected} />
+      <div className="grid gap-8 grid-cols-1 md:grid-cols-2 lg:grid-cols-3 items-stretch reveal-scale">
+        {projects.map((p, i) => (
+          <Card key={p.id} project={p} index={i} onOpen={setSelected} />
         ))}
       </div>
 

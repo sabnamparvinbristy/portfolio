@@ -126,4 +126,20 @@ export const projects = [
     tags: ['Java', 'Swing', 'AWT', 'MySQL', 'JDBC', 'IntelliJ IDEA', 'Git'],
     github: 'https://github.com/sabnamparvinbristy/palliative-care/tree/main',
   },
+  {
+    id: 3,
+    title: 'Weather App',
+    subtitle: 'Real-Time Weather Dashboard',
+    type: 'Frontend · React',
+    emoji: '🌤️',
+    color: 'teal',
+    description:
+      'A sleek, glassmorphism-styled weather application that delivers real-time weather conditions and a 5-day forecast for any city worldwide. Features dynamic UI themes that shift gradients and accent colors based on current weather conditions, dark/light mode toggle, metric/imperial unit switching, live clock, and detailed stats including wind, humidity, pressure, visibility, sunrise and sunset times.',
+    problem:  'Users need an elegant, at-a-glance weather dashboard with rich contextual data.',
+    approach: 'React with OpenWeatherMap API, dynamic glassmorphism theming per weather condition, and animated SVG-free CSS visuals.',
+    outcome:  'Polished, fully responsive weather app with live data, dynamic themes, and smooth UX.',
+    tags: ['React JS', 'CSS3', 'OpenWeatherMap API', 'Glassmorphism', 'Vite', 'Vercel'],
+    github: 'https://github.com/sabnamparvinbristy/Weather-App',
+    live:   'https://weather-app-eight-zeta-13.vercel.app/',
+  },
 ];
