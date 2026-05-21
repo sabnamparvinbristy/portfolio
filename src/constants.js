@@ -142,4 +142,20 @@ export const projects = [
     github: 'https://github.com/sabnamparvinbristy/Weather-App',
     live:   'https://weather-app-eight-zeta-13.vercel.app/',
   },
+  {
+  id: 4,
+  title: 'Pomodoro',
+  subtitle: 'Focus Timer App',
+  type: 'Frontend · React',
+  emoji: '⏱️',
+ color: 'purple',
+  description:
+    'A sleek, dark-themed Pomodoro productivity timer built with React. Features three modes — Focus (25 min), Short Break (5 min), and Long Break (15 min) — with an animated SVG ring progress indicator, live clock, session counter, and smooth glassmorphism card UI. Background gradients and accent colors shift dynamically per mode.',
+  problem:  'Developers need a distraction-free, visually calming focus timer that fits a dark workflow.',
+  approach: 'React with per-mode dynamic gradients, SVG ring progress, glassmorphism card, and animated ambient orbs.',
+  outcome:  'Polished productivity tool with real-time countdown, mode switching, session tracking, and fluid UI transitions.',
+  tags: ['React JS', 'CSS3', 'Glassmorphism', 'SVG Animation', 'Vite'],
+  github: 'https://github.com/sabnamparvinbristy/Pomodoro-Timer',
+  live:   'https://pomodoro-timer-gold-five.vercel.app/',
+},
 ];
