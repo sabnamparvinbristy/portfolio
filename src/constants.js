@@ -81,53 +81,9 @@ export const education = [
 ];
 
 export const projects = [
+  
   {
     id: 0,
-    title: 'Coffee-Shop',
-    subtitle: 'Modern Static UI',
-    type: 'Frontend',
-    emoji: '☕',
-    color: 'teal',
-    description:
-      'A visually appealing static website representing a modern coffee shop interface with clean layout, styled sections, and fully responsive design. Demonstrates foundational web development skills focused on structure and design.',
-    problem:  'Create a visually stunning, responsive coffee shop UI without JavaScript.',
-    approach: 'Pure HTML & CSS with clean layout, custom components, and responsive breakpoints.',
-    outcome:  'Demonstrates strong foundational design skills — clean, maintainable, semantic markup.',
-    tags: ['HTML', 'CSS', 'Responsive Design'],
-    github: 'https://github.com/sabnamparvinbristy/coffee-shop',
-  },
-  {
-    id: 1,
-    title: 'Zoteo',
-    subtitle: 'Real Estate Platform',
-    type: 'Full-Stack · MERN',
-    emoji: '🏠',
-    color: 'purple',
-    description:
-      'A full-stack real estate web application built using the MERN stack. Users can view property listings, book available properties, and interact with a map-based interface. Features secure JWT authentication, session handling via cookies, and data management with MongoDB and Prisma ORM.',
-    problem:  'Users need a seamless way to browse and book properties with map visualization.',
-    approach: 'MERN stack with JWT auth, Prisma ORM, React Map GL, and cookie-based sessions.',
-    outcome:  'Full property booking system with secure authentication and interactive maps.',
-    tags: ['React JS', 'Node.js', 'MongoDB', 'Express', 'Prisma ORM', 'JWT', 'React Map'],
-    github: 'https://github.com/sabnamparvinbristy/real-estate-website',
-  },
-  {
-    id: 2,
-    title: 'PCHMS',
-    subtitle: 'Hospital Management System',
-    type: 'Desktop · Java',
-    emoji: '🏥',
-    color: 'violet',
-    description:
-      'A desktop-based Java application designed to streamline operations in palliative care hospitals. Manages patient records, doctor profiles, appointments, treatments, billing, pharmacy stock, and critical patient monitoring.',
-    problem:  'Palliative care hospitals need specialized, efficient digital administration tools.',
-    approach: 'Java Swing/AWT desktop GUI with MySQL via JDBC covering all hospital modules.',
-    outcome:  'Comprehensive hospital admin system: patients, billing, pharmacy, and scheduling.',
-    tags: ['Java', 'Swing', 'AWT', 'MySQL', 'JDBC', 'IntelliJ IDEA', 'Git'],
-    github: 'https://github.com/sabnamparvinbristy/palliative-care/tree/main',
-  },
-  {
-    id: 3,
     title: 'Weather App',
     subtitle: 'Real-Time Weather Dashboard',
     type: 'Frontend · React',
@@ -143,7 +99,7 @@ export const projects = [
     live:   'https://weather-app-eight-zeta-13.vercel.app/',
   },
   {
-  id: 4,
+  id: 1,
   title: 'Pomodoro',
   subtitle: 'Focus Timer App',
   type: 'Frontend · React',
@@ -158,4 +114,49 @@ export const projects = [
   github: 'https://github.com/sabnamparvinbristy/Pomodoro-Timer',
   live:   'https://pomodoro-timer-gold-five.vercel.app/',
 },
+{
+    id: 2,
+    title: 'Coffee-Shop',
+    subtitle: 'Modern Static UI',
+    type: 'Frontend',
+    emoji: '☕',
+    color: 'teal',
+    description:
+      'A visually appealing static website representing a modern coffee shop interface with clean layout, styled sections, and fully responsive design. Demonstrates foundational web development skills focused on structure and design.',
+    problem:  'Create a visually stunning, responsive coffee shop UI without JavaScript.',
+    approach: 'Pure HTML & CSS with clean layout, custom components, and responsive breakpoints.',
+    outcome:  'Demonstrates strong foundational design skills — clean, maintainable, semantic markup.',
+    tags: ['HTML', 'CSS', 'Responsive Design'],
+    github: 'https://github.com/sabnamparvinbristy/coffee-shop',
+  },
+  {
+    id: 3,
+    title: 'Zoteo',
+    subtitle: 'Real Estate Platform',
+    type: 'Full-Stack · MERN',
+    emoji: '🏠',
+    color: 'purple',
+    description:
+      'A full-stack real estate web application built using the MERN stack. Users can view property listings, book available properties, and interact with a map-based interface. Features secure JWT authentication, session handling via cookies, and data management with MongoDB and Prisma ORM.',
+    problem:  'Users need a seamless way to browse and book properties with map visualization.',
+    approach: 'MERN stack with JWT auth, Prisma ORM, React Map GL, and cookie-based sessions.',
+    outcome:  'Full property booking system with secure authentication and interactive maps.',
+    tags: ['React JS', 'Node.js', 'MongoDB', 'Express', 'Prisma ORM', 'JWT', 'React Map'],
+    github: 'https://github.com/sabnamparvinbristy/real-estate-website',
+  },
+  {
+    id: 4,
+    title: 'PCHMS',
+    subtitle: 'Hospital Management System',
+    type: 'Desktop · Java',
+    emoji: '🏥',
+    color: 'violet',
+    description:
+      'A desktop-based Java application designed to streamline operations in palliative care hospitals. Manages patient records, doctor profiles, appointments, treatments, billing, pharmacy stock, and critical patient monitoring.',
+    problem:  'Palliative care hospitals need specialized, efficient digital administration tools.',
+    approach: 'Java Swing/AWT desktop GUI with MySQL via JDBC covering all hospital modules.',
+    outcome:  'Comprehensive hospital admin system: patients, billing, pharmacy, and scheduling.',
+    tags: ['Java', 'Swing', 'AWT', 'MySQL', 'JDBC', 'IntelliJ IDEA', 'Git'],
+    github: 'https://github.com/sabnamparvinbristy/palliative-care/tree/main',
+  },
 ];
